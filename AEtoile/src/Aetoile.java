@@ -48,16 +48,7 @@ public class Aetoile {
 		while (sommetSuiv.size() > 0) {
 
 			System.out.println("___" + ref.name + "___");
-			for (Sommet currentS : ref.suiv.keySet()) {
-				System.out.print(currentS.name + "-");
-			}
-			System.out.println();
 
-			System.out.println("Suivants restants");
-			for (Sommet currentS : sommetSuiv) {
-				System.out.print(currentS.name + "(" + currentS.fEtoile() + ")" + "-");
-			}
-			System.out.println();
 
 			for (Sommet currents : sommetSuiv) {
 				if (currents.fEtoile() <= min) {
