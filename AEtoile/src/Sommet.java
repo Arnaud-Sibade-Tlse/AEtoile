@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -6,12 +5,10 @@ public class Sommet {
 	String name;
 	Map<Sommet, Integer> suiv;
 	int distP;
-	int heurist;;
-	ArrayList<Sommet> parcouru;
+	int heurist;
 	
 	public Sommet(String name, int he){
 		suiv = new HashMap<Sommet, Integer>();
-		parcouru = new ArrayList<Sommet>();
 		this.name = name;
 		heurist = he;
 		distP = 0;
@@ -19,12 +16,11 @@ public class Sommet {
 	
 	public void addSuiv(Sommet s, int dist){
 		suiv.put(s,dist);
-		s.addParcouru(this);
-		s.distP+=this.distP+dist;
-	}
-	
-	private void addParcouru(Sommet sommet) {
-		this.parcouru.add(sommet);
+		if(s.distP==0){
+			if(this.distP+dist > s.distP){
+				s.distP+=this.distP+dist;
+			}
+		}
 		
 	}
 
@@ -35,7 +31,5 @@ public class Sommet {
 	public int fEtoile(){
 		return this.distP+this.heurist;
 	}
-	
-	
 	
 }
