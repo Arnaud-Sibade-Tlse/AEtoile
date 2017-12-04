@@ -41,12 +41,16 @@ public class Aetoile {
 	
 	public static void Aetoiles(Graphe g){
 		Sommet ref = g.first;
-		Sommet lastRef = g.first;
 		Sommet newRef = g.first;
 		int min = 999999;
-		ArrayList<Sommet> sommetSuiv = (ArrayList<Sommet>) g.first.suiv.keySet();
+		ArrayList<Sommet> sommetSuiv = new ArrayList<Sommet>();
+		
+		for(Sommet currentS : g.first.suiv.keySet()){
+			sommetSuiv.add(currentS);
+		}
+		
 		while(ref!=g.last){
-				System.out.println(ref+"- lol");
+				System.out.println(ref.name+"- lol");
 				System.out.println(g.sommets.toString());
 				for(Sommet currents : sommetSuiv){
 					System.out.println(currents.name);
@@ -61,6 +65,12 @@ public class Aetoile {
 			min = 99999;
 			sommetSuiv.remove(ref);
 			ref = newRef;
+			for(Sommet currentS : ref.suiv.keySet()){
+				if(!sommetSuiv.contains(currentS)){
+					sommetSuiv.add(currentS);
+				}
+			}
+			
 			if(ref==g.last){
 				System.out.println(ref.fEtoile());
 				break;
