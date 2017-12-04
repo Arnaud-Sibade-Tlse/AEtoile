@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Aetoile {
 	
@@ -43,10 +44,11 @@ public class Aetoile {
 		Sommet lastRef = g.first;
 		Sommet newRef = g.first;
 		int min = 999999;
+		ArrayList<Sommet> sommetSuiv = (ArrayList<Sommet>) g.first.suiv.keySet();
 		while(ref!=g.last){
 				System.out.println(ref+"- lol");
 				System.out.println(g.sommets.toString());
-				for(Sommet currents : ref.suiv.keySet()){
+				for(Sommet currents : sommetSuiv){
 					System.out.println(currents.name);
 					if(currents.fEtoile() <= min){
 						if(currents!=ref){
@@ -55,9 +57,9 @@ public class Aetoile {
 						}
 					}
 				}
-				
+			sommetSuiv.addAll(ref.suiv.keySet());	
 			min = 99999;
-			g.moveSommet(ref);
+			sommetSuiv.remove(ref);
 			ref = newRef;
 			if(ref==g.last){
 				System.out.println(ref.fEtoile());
